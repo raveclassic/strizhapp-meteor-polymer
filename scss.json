@@ -1,0 +1,10 @@
+{
+  "enableAutoprefixer": true,
+  "autoprefixerOptions": {
+    "cascade": false
+  },
+  "includePaths": [
+    "client/components",
+    "public/components"
+  ]
+}

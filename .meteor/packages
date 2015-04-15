@@ -9,6 +9,6 @@ accounts-password
 iron:router
 coffeescript
 meteorhacks:inject-initial
-differential:vulcanize
 
 reactive-var
+fourseven:scss

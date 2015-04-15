@@ -2,52 +2,60 @@ Router.configure
   autoRender: false
   autoStart: false
 
+Router.map ->
+  @route 'index',
+    path: '/'
+    action: ->
+      if Meteor.user()
+        @layout 'app.layout'
+        @render 'app.home.posts'
 
 #
-# Public Routes
+##
+## Public Routes
+##
+#@PublicController = RouteController.extend
+#  layoutTemplate: "publicLayout"
+#  loadingTemplate: "loading"
 #
-@PublicController = RouteController.extend
-  layoutTemplate: "publicLayout"
-  loadingTemplate: "loading"
-
-Router.route "/about",
-  controller: "PublicController"
-
-Router.route "/sign-in",
-  name: "accounts.signIn"
-  template: "signIn"
-  controller: "PublicController"
-
-Router.route "/sign-up",
-  name: "accounts.signUp"
-  template: "signUp"
-  controller: "PublicController"
-
-Router.route "/sign-out",
-  action: ->
-    Meteor.logout ->
-      Router.go "/"
-
+#Router.route "/about",
+#  controller: "PublicController"
 #
-# Dashboard Routes
+#Router.route "/sign-in",
+#  name: "accounts.signIn"
+#  template: "signIn"
+#  controller: "PublicController"
 #
-@DashboardController = RouteController.extend
-  layoutTemplate: "dashboardLayout"
-  loadingTemplate: "loading"
-  onBeforeAction: ->
-    if Meteor.loggingIn()
-      @render "loading"
-    else if Meteor.user()
-      @next()
-    else
-      @redirect "/"
-
-Router.route "/",
-  name: "home"
-  action: ->
-    if Meteor.user()
-      @layout "dashboardLayout"
-      @render "onboarding"
-    else
-      @layout "publicLayout"
-      @render "home"
+#Router.route "/sign-up",
+#  name: "accounts.signUp"
+#  template: "signUp"
+#  controller: "PublicController"
+#
+#Router.route "/sign-out",
+#  action: ->
+#    Meteor.logout ->
+#      Router.go "/"
+#
+##
+## Dashboard Routes
+##
+#@DashboardController = RouteController.extend
+#  layoutTemplate: "dashboardLayout"
+#  loadingTemplate: "loading"
+#  onBeforeAction: ->
+#    if Meteor.loggingIn()
+#      @render "loading"
+#    else if Meteor.user()
+#      @next()
+#    else
+#      @redirect "/"
+#
+#Router.route "/",
+#  name: "home"
+#  action: ->
+#    if Meteor.user()
+#      @layout "dashboardLayout"
+#      @render "onboarding"
+#    else
+#      @layout "publicLayout"
+#      @render "home"
